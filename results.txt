@@ -1,0 +1,1282 @@
+### Résumé des fichiers trouvés dans D:\agent-router-lab ###
+
+===== D:\agent-router-lab\next-env.d.ts =====
+
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
+
+
+================================================================================
+
+===== D:\agent-router-lab\package.json =====
+
+{
+  "name": "agent-router-lab",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.0",
+    "chart.js": "^4.4.8",
+    "lucide-react": "^0.487.0",
+    "next": "^14.2.28",
+    "postcss": "^8.4.0",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "18.2.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.0",
+    "@types/react": "19.1.0",
+    "typescript": "^5.3.0"
+  }
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\postcss.config.js =====
+
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\README.md =====
+
+# Agent Router Lab
+
+Simulateur visuel d'aiguillage d'agents IA.
+feedbackBot → relation client / analyse de texte.
+
+devHelper → développement / code / debug.
+
+dataScout → analyse de données / CSV / requêtes SQL.
+Agent ID Nom affiché Rôle / Mission principale Mots-clés détecteurs
+graphMaster 🧮 GraphMaster Génère des graphes visuels (matplotlib, chartjs, etc.) graph, courbe, visualisation
+docReader 📚 Doc Reader Résume et extrait l'info depuis des PDF / .docx résumé, document, pdf
+sqlSensei 🧾 SQL Sensei Rédige, corrige et optimise des requêtes SQL SQL, SELECT, requête, base
+trendWatch 📈 Trend Watcher Analyse les tendances ou signaux faibles dans les données tendance, analyse, pattern
+explainBot 🧠 ExplainBot Fournit des explications pédagogiques sur des concepts pourquoi, comment, définition
+imageAnalyst 🖼️ Image Analyst Analyse images ou diagrammes (via vision LLM si dispo) image, screenshot, diagramme
+ideaBooster 💡 Idea Booster Génère des idées créatives : noms, slogans, scripts idée, nom, slogan, pitch
+legalAdvisor ⚖️ Legal Advisor Aide juridique basique sur des contrats, CGU, RGPD RGPD, loi, contrat, CGU
+emailAssistant 📬 Email Assistant Génère ou reformule des e-mails pro ou support client email, réponse, relance
+codeReviewer 🧐 Code Reviewer Analyse, corrige, commente du code en profondeur review, lint, améliore, code qualité
+schedulerBot 📅 Scheduler Bot Gère des dates, planifie, génère des agendas, reminders, cronjobs date, échéance, planning, cron, calendrier
+notionHelper 🗂️ Notion Helper Organise les idées sous forme de plan, tableau, document structuré plan, table, notion, roadmap
+commandGenie 💻 Command Genie Génère des commandes CLI, Docker, bash, git commande, shell, terminal, docker, bash
+bugHunter 🐞 Bug Hunter Détecte et corrige des bugs dans le code fourni bug, erreur, crash, exception, stack trace
+markdownMaster ✍️ Markdown Master Génère ou convertit en Markdown (docs techniques, README...) markdown, README, doc
+translationBot 🌍 Translation Bot Traduit automatiquement du contenu multilingue traduit, anglais, espagnol, traduction
+
+
+================================================================================
+
+===== D:\agent-router-lab\tailwind.config.js =====
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\tsconfig.json =====
+
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "esModuleInterop": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\app\layout.tsx =====
+
+import "../styles/globals.css"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body className="bg-gray-100 text-zinc-900">{children}</body>
+    </html>
+  )
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\app\page.tsx =====
+
+'use client'
+import type { JSX } from 'react'
+
+import { useState, useEffect } from 'react'
+import { 
+  Send, 
+  History, 
+  Sparkles, 
+  BarChart3,
+  MessageSquare, 
+  Code, 
+  Database, 
+  LineChart, 
+  ClipboardList,
+  FileText, 
+  Database as SqlIcon, 
+  TrendingUp, 
+  HelpCircle, 
+  Image, 
+  Lightbulb, 
+  Scale, 
+  Mail, 
+  CheckSquare, 
+  Calendar, 
+  Trello, 
+  Terminal, 
+  Bug, 
+  FileDown, 
+  Globe 
+} from 'lucide-react'
+import Link from 'next/link'
+
+const getDisplayName = (agentId: string): string => {
+  const map: Record<string, string> = {
+    feedbackBot: "Feedback Bot", devHelper: "Dev Helper", dataScout: "Data Scout",
+    graphMaster: "GraphMaster", docReader: "Doc Reader", sqlSensei: "SQL Sensei",
+    trendWatch: "Trend Watcher", explainBot: "ExplainBot", imageAnalyst: "Image Analyst",
+    ideaBooster: "Idea Booster", legalAdvisor: "Legal Advisor", emailAssistant: "Email Assistant",
+    codeReviewer: "Code Reviewer", schedulerBot: "Scheduler Bot", notionHelper: "Notion Helper",
+    commandGenie: "Command Genie", bugHunter: "Bug Hunter", markdownMaster: "Markdown Master",
+    translationBot: "Translation Bot"
+  }
+  return map[agentId] || agentId
+}
+
+const agentDescriptions: Record<string, string> = {
+  feedbackBot: "Analyse les retours utilisateurs et feedbacks.",
+  devHelper: "Aide au développement (code, debug, dev web).",
+  dataScout: "Explore les données structurées comme les CSV.",
+  graphMaster: "Crée des visualisations graphiques (charts, courbes).",
+  docReader: "Lit et résume les documents (PDF, Word).",
+  sqlSensei: "Rédige et optimise des requêtes SQL.",
+  trendWatch: "Analyse les tendances et signaux faibles.",
+  explainBot: "Explique les concepts complexes.",
+  imageAnalyst: "Analyse des images, captures, diagrammes.",
+  ideaBooster: "Génère des idées créatives, noms, slogans.",
+  legalAdvisor: "Donne des conseils juridiques de base.",
+  emailAssistant: "Rédige ou reformule des e-mails.",
+  codeReviewer: "Améliore ou relit du code.",
+  schedulerBot: "Aide à la planification et organisation.",
+  notionHelper: "Gère des contenus de type Notion ou tables.",
+  commandGenie: "Rédige des commandes shell/CLI/Docker.",
+  bugHunter: "Traque les bugs et erreurs techniques.",
+  markdownMaster: "Génère ou améliore du Markdown / Readme.",
+  translationBot: "Traduit des textes en plusieurs langues."
+}
+
+type HistoryEntry = {
+  question: string
+  agent: string
+  method: 'mots-clés' | 'LLM' | 'correction'
+  date: string
+}
+
+export default function HomePage() {
+  const [input, setInput] = useState("")
+  const [result, setResult] = useState<HistoryEntry | null>(null)
+  const [history, setHistory] = useState<HistoryEntry[]>([])
+  const [correctedAgent, setCorrectedAgent] = useState<string | null>(null)
+  const [pendingCorrection, setPendingCorrection] = useState<string | null>(null)
+
+  useEffect(() => {
+    const stored = localStorage.getItem("agent_history")
+    if (stored) setHistory(JSON.parse(stored))
+  }, [])
+
+  const handleTest = async () => {
+    if (!input.trim()) return
+
+    const correctionRes = await fetch("/api/corrections", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: input })
+    })
+    const correction = await correctionRes.json()
+
+    if (correction.agent) {
+      const entry: HistoryEntry = {
+        question: input,
+        agent: correction.agent,
+        method: "correction",
+        date: new Date().toISOString(),
+      }
+      const newHistory: HistoryEntry[] = [entry, ...history]
+      setResult(entry)
+      setHistory(newHistory)
+      localStorage.setItem("agent_history", JSON.stringify(newHistory))
+      setInput("")
+      return
+    }
+
+    const res = await fetch("/api/route-agent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: input }),
+    })
+    const data = await res.json()
+    const entry: HistoryEntry = {
+      question: input,
+      agent: data.agent || "❌ Aucun agent détecté",
+      method: data.source || "LLM",
+      date: new Date().toISOString(),
+    }
+    const newHistory: HistoryEntry[] = [entry, ...history]
+    setResult(entry)
+    setHistory(newHistory)
+    localStorage.setItem("agent_history", JSON.stringify(newHistory))
+    setCorrectedAgent(null)
+    setPendingCorrection(null)
+    setInput("")
+  }
+
+  const validateCorrection = async () => {
+    if (!pendingCorrection || !result) return
+
+    await fetch("/api/corrections", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: result.question, agent: pendingCorrection })
+    })
+
+    const updatedHistory: HistoryEntry[] = history.map((entry) =>
+      entry === result ? { ...entry, agent: pendingCorrection, method: "correction" } : entry
+    )
+    setHistory(updatedHistory)
+    localStorage.setItem("agent_history", JSON.stringify(updatedHistory))
+    setCorrectedAgent(pendingCorrection)
+    setPendingCorrection(null)
+  }
+
+  const handleCorrectionChange = (value: string) => {
+    if (!result) return
+    if (value !== result.agent) {
+      setPendingCorrection(value)
+    } else {
+      setPendingCorrection(null)
+    }
+  }
+
+  const agentOptions = Object.keys(agentDescriptions).map((id) => (
+    <option key={id} value={id} title={agentDescriptions[id]}>
+      {getDisplayName(id)}
+    </option>
+  ))
+
+  const getAgentIcon = (agentId: string) => {
+    const size = 16
+    const icons: Record<string, JSX.Element> = {
+      feedbackBot: <MessageSquare size={size} />, devHelper: <Code size={size} />,
+      dataScout: <Database size={size} />, graphMaster: <LineChart size={size} />,
+      docReader: <FileText size={size} />, sqlSensei: <SqlIcon size={size} />,
+      trendWatch: <TrendingUp size={size} />, explainBot: <HelpCircle size={size} />, 
+      imageAnalyst: <Image size={size} />, ideaBooster: <Lightbulb size={size} />, 
+      legalAdvisor: <Scale size={size} />, emailAssistant: <Mail size={size} />,
+      codeReviewer: <CheckSquare size={size} />, schedulerBot: <Calendar size={size} />, 
+      notionHelper: <Trello size={size} />, commandGenie: <Terminal size={size} />, 
+      bugHunter: <Bug size={size} />, markdownMaster: <FileDown size={size} />, 
+      translationBot: <Globe size={size} />
+    }
+    return icons[agentId] || <HelpCircle size={size} />
+  }
+
+  const agentColor = (agent: string) => {
+    const map: Record<string, string> = {
+      feedbackBot: "text-pink-600", devHelper: "text-green-600", dataScout: "text-indigo-600",
+      graphMaster: "text-purple-600", docReader: "text-amber-700", sqlSensei: "text-blue-800",
+      trendWatch: "text-green-700", explainBot: "text-cyan-700", imageAnalyst: "text-rose-600",
+      ideaBooster: "text-yellow-600", legalAdvisor: "text-slate-700", emailAssistant: "text-blue-600",
+      codeReviewer: "text-emerald-700", schedulerBot: "text-orange-600", notionHelper: "text-zinc-700",
+      commandGenie: "text-fuchsia-600", bugHunter: "text-red-600", markdownMaster: "text-teal-700",
+      translationBot: "text-sky-600"
+    }
+    return map[agent] || "text-gray-800"
+  }
+
+  const methodBadge = (method: string) =>
+    method === "LLM"
+      ? <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs font-semibold">LLM</span>
+      : method === "correction"
+      ? <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs font-semibold">Correction</span>
+      : <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-semibold">Mots-clés</span>
+
+  return (
+    <>
+      <header className="sticky top-0 bg-white z-10 border-b border-zinc-200 shadow-sm px-6 py-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold flex items-center gap-2 text-blue-700">
+          <Sparkles size={22} /> Simulateur d'aiguillage D'AGENTS IA
+        </h1>
+        <div className="flex gap-2">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 text-sm text-blue-600 border border-blue-600 px-3 py-1.5 rounded hover:bg-blue-600 hover:text-white transition"
+          >
+            <BarChart3 size={16} /> Tableau de bord
+          </Link>
+          <Link
+            href="/corrections"
+            className="inline-flex items-center gap-2 text-sm text-blue-600 border border-blue-600 px-3 py-1.5 rounded hover:bg-blue-600 hover:text-white transition"
+          >
+            <ClipboardList size={16} /> Voir les corrections
+          </Link>
+        </div>
+      </header>
+
+      <main className="p-6 max-w-4xl mx-auto space-y-8">
+        <div className="flex items-center gap-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Pose une question à router..."
+            className="flex-1 border border-zinc-300 px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          />
+          <button
+            onClick={handleTest}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg flex items-center gap-2 shadow transition"
+          >
+            <Send size={18} /> Tester
+          </button>
+        </div>
+
+        {result && (
+          <div className="bg-zinc-50 border border-zinc-200 rounded-lg p-5 shadow-sm space-y-3">
+            <p className="text-sm text-zinc-500">🔍 Décision prise</p>
+            <div className="text-lg flex items-center gap-2">
+              <span className={`font-bold flex items-center gap-1.5 ${agentColor(correctedAgent || result.agent)}`}>
+                {getAgentIcon(correctedAgent || result.agent)} {getDisplayName(correctedAgent || result.agent)}
+              </span> via {methodBadge(result.method)}
+            </div>
+            <div className="text-sm text-zinc-600">Corriger manuellement si besoin :</div>
+            <div className="flex items-center gap-2">
+              <select
+                value={pendingCorrection || correctedAgent || result.agent}
+                onChange={(e) => handleCorrectionChange(e.target.value)}
+                className="border border-zinc-300 px-3 py-2 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+              >
+                {agentOptions}
+              </select>
+              {pendingCorrection && pendingCorrection !== result.agent && (
+                <button
+                  onClick={validateCorrection}
+                  className="px-3 py-2 text-sm bg-emerald-600 text-white rounded hover:bg-emerald-700 transition"
+                >
+                  ✅ Valider la correction
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {history.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <History size={20} /> Historique des aiguillages
+            </h2>
+            <div className="overflow-x-auto rounded-lg border border-zinc-200 shadow-sm">
+              <table className="w-full text-sm bg-white">
+                <thead className="bg-zinc-100 text-zinc-600 text-left">
+                  <tr>
+                    <th className="px-4 py-3 border-b">Requête</th>
+                    <th className="px-4 py-3 border-b">Agent</th>
+                    <th className="px-4 py-3 border-b">Méthode</th>
+                    <th className="px-4 py-3 border-b">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {history.map((entry, idx) => (
+                    <tr key={idx} className="hover:bg-zinc-50 transition">
+                      <td className="px-4 py-2 border-b">{entry.question}</td>
+                      <td className={`px-4 py-2 border-b font-semibold ${agentColor(entry.agent)}`}>
+                        <div className="flex items-center gap-1.5">
+                          {getAgentIcon(entry.agent)} {getDisplayName(entry.agent)}
+                        </div>
+                      </td>
+                      <td className="px-4 py-2 border-b">{methodBadge(entry.method)}</td>
+                      <td className="px-4 py-2 border-b text-xs text-zinc-500">
+                        {new Date(entry.date).toLocaleString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </main>
+    </>
+  )
+}
+
+================================================================================
+
+===== D:\agent-router-lab\app\api\corrections\route.ts =====
+
+import { NextRequest, NextResponse } from 'next/server'
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import path from 'path'
+
+let db: any = null
+
+async function getDb() {
+  if (db) return db
+  db = await open({
+    filename: path.join(process.cwd(), 'corrections.db'),
+    driver: sqlite3.Database
+  })
+  await db.exec(`CREATE TABLE IF NOT EXISTS corrections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT UNIQUE,
+    agent TEXT,
+    date TEXT
+  )`)
+  return db
+}
+
+export async function POST(req: NextRequest) {
+  const body = await req.json()
+  const db = await getDb()
+
+  if (body.question && body.agent) {
+    // Enregistrer une correction
+    await db.run(
+      `INSERT OR REPLACE INTO corrections (question, agent, date)
+       VALUES (?, ?, ?)`,
+      body.question,
+      body.agent,
+      new Date().toISOString()
+    )
+    return NextResponse.json({ status: 'ok' })
+  }
+
+  if (body.question) {
+    // Chercher une correction existante
+    const existing = await db.get(`SELECT agent FROM corrections WHERE question = ?`, body.question)
+    if (existing) {
+      return NextResponse.json({ agent: existing.agent })
+    }
+  }
+
+  return NextResponse.json({})
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\app\api\corrections\update\route.ts =====
+
+import { NextRequest, NextResponse } from 'next/server'
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+
+// PATCH/POST /api/corrections/update
+export async function POST(req: NextRequest) {
+  const { id, agent } = await req.json()
+
+  if (!id || !agent) {
+    return NextResponse.json({ error: "Missing id or agent" }, { status: 400 })
+  }
+
+  const db = await open({
+    filename: './corrections.db',
+    driver: sqlite3.Database
+  })
+
+  await db.run('UPDATE corrections SET agent = ? WHERE id = ?', agent, id)
+
+  return NextResponse.json({ success: true })
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\app\api\export\corrections\route.ts =====
+
+import { NextResponse } from 'next/server'
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import path from 'path'
+
+const dbPath = path.join(process.cwd(), 'corrections.db')
+
+export async function GET() {
+  try {
+    const db = await open({ filename: dbPath, driver: sqlite3.Database })
+    await db.exec(`CREATE TABLE IF NOT EXISTS corrections (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      question TEXT,
+      before_agent TEXT,
+      after_agent TEXT,
+      date TEXT
+    )`)
+
+    const rows = await db.all(`SELECT * FROM corrections ORDER BY date DESC`)
+    return NextResponse.json(rows)
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 })
+  }
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\app\api\route-agent\route.ts =====
+
+
+import { NextResponse } from "next/server"
+
+const keywordMap = {
+  // feedbackBot
+  feedback: "feedbackBot",
+  client: "feedbackBot",
+  
+  // devHelper
+  dev: "devHelper",
+  code: "devHelper",
+  
+  // dataScout
+  csv: "dataScout",
+  données: "dataScout",
+  
+  // graphMaster
+  graph: "graphMaster",
+  courbe: "graphMaster",
+  visualisation: "graphMaster",
+  
+  // docReader
+  résumé: "docReader",
+  document: "docReader",
+  pdf: "docReader",
+  
+  // sqlSensei
+  sql: "sqlSensei",
+  select: "sqlSensei",
+  requête: "sqlSensei",
+  base: "sqlSensei",
+  
+  // trendWatch
+  tendance: "trendWatch",
+  analyse: "trendWatch",
+  pattern: "trendWatch",
+  
+  // explainBot
+  pourquoi: "explainBot",
+  comment: "explainBot",
+  définition: "explainBot",
+  
+  // imageAnalyst
+  image: "imageAnalyst",
+  screenshot: "imageAnalyst",
+  diagramme: "imageAnalyst",
+  
+  // ideaBooster
+  idée: "ideaBooster",
+  nom: "ideaBooster",
+  slogan: "ideaBooster",
+  pitch: "ideaBooster",
+  
+  // legalAdvisor
+  rgpd: "legalAdvisor",
+  loi: "legalAdvisor",
+  contrat: "legalAdvisor",
+  cgu: "legalAdvisor",
+  
+  // emailAssistant
+  email: "emailAssistant",
+  réponse: "emailAssistant",
+  relance: "emailAssistant",
+  
+  // codeReviewer
+  review: "codeReviewer",
+  lint: "codeReviewer",
+  améliore: "codeReviewer",
+  "code qualité": "codeReviewer",
+  
+  // schedulerBot
+  date: "schedulerBot",
+  échéance: "schedulerBot",
+  planning: "schedulerBot",
+  cron: "schedulerBot",
+  calendrier: "schedulerBot",
+  
+  // notionHelper
+  plan: "notionHelper",
+  table: "notionHelper",
+  notion: "notionHelper",
+  roadmap: "notionHelper",
+  
+  // commandGenie
+  commande: "commandGenie",
+  shell: "commandGenie",
+  terminal: "commandGenie",
+  docker: "commandGenie",
+  bash: "commandGenie",
+  
+  // bugHunter
+  bug: "bugHunter",
+  erreur: "bugHunter",
+  crash: "bugHunter",
+  exception: "bugHunter",
+  "stack trace": "bugHunter",
+  
+  // markdownMaster
+  markdown: "markdownMaster",
+  readme: "markdownMaster",
+  doc: "markdownMaster",
+  
+  // translationBot
+  traduit: "translationBot",
+  anglais: "translationBot",
+  espagnol: "translationBot",
+  traduction: "translationBot"
+}
+
+export async function POST(req: Request) {
+  const { question } = await req.json()
+
+  const lower = question.toLowerCase()
+
+  // 🎯 Détection par mots-clés
+  for (const [keyword, agent] of Object.entries(keywordMap)) {
+    if (lower.includes(keyword)) {
+      return NextResponse.json({
+        agent,
+        source: "mots-clés"
+      })
+    }
+  }
+
+  // 🤖 Fallback : classification via un petit LLM local (Ollama)
+  const res = await fetch("http://localhost:11434/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "phi4:latest", // ou un autre modèle installé chez toi
+      prompt: `Classifie cette requête parmi les agents suivants : feedbackBot, devHelper, dataScout, graphMaster, docReader, sqlSensei, trendWatch, explainBot, imageAnalyst, ideaBooster, legalAdvisor, emailAssistant, codeReviewer, schedulerBot, notionHelper, commandGenie, bugHunter, markdownMaster, translationBot. Requête : "${question}". Répond uniquement par le nom de l'agent.`,
+      stream: false
+    }),
+  })
+
+  const json = await res.json()
+
+  return NextResponse.json({
+    agent: json.response.trim(),
+    source: "LLM"
+  })
+}
+
+================================================================================
+
+===== D:\agent-router-lab\app\corrections\page.tsx =====
+
+'use client'
+import type { JSX } from 'react'
+import { useEffect, useState } from 'react'
+import {
+  Sparkles, MessageSquare, Code, Database, LineChart, FileText,
+  Database as SqlIcon, TrendingUp, HelpCircle, Image, Lightbulb,
+  Scale, Mail, CheckSquare, Calendar, Trello, Terminal, Bug,
+  FileDown, Globe, Download, Pencil, Check
+} from 'lucide-react'
+import Link from 'next/link'
+
+interface CorrectionEntry {
+  id: number
+  question: string
+  agent: string
+  date: string
+}
+
+const agentIcons: Record<string, JSX.Element> = {
+  feedbackBot: <MessageSquare size={16} />, devHelper: <Code size={16} />, dataScout: <Database size={16} />,
+  graphMaster: <LineChart size={16} />, docReader: <FileText size={16} />, sqlSensei: <SqlIcon size={16} />,
+  trendWatch: <TrendingUp size={16} />, explainBot: <HelpCircle size={16} />, imageAnalyst: <Image size={16} />,
+  ideaBooster: <Lightbulb size={16} />, legalAdvisor: <Scale size={16} />, emailAssistant: <Mail size={16} />,
+  codeReviewer: <CheckSquare size={16} />, schedulerBot: <Calendar size={16} />, notionHelper: <Trello size={16} />,
+  commandGenie: <Terminal size={16} />, bugHunter: <Bug size={16} />, markdownMaster: <FileDown size={16} />,
+  translationBot: <Globe size={16} />
+}
+
+export default function CorrectionsPage() {
+  const [corrections, setCorrections] = useState<CorrectionEntry[]>([])
+  const [search, setSearch] = useState("")
+  const [sortBy, setSortBy] = useState<"date" | "agent">("date")
+  const [editId, setEditId] = useState<number | null>(null)
+  const [editAgent, setEditAgent] = useState<string>("")
+
+  useEffect(() => {
+    fetch("/api/export/corrections")
+      .then((res) => res.json())
+      .then((data) => setCorrections(data))
+  }, [])
+
+  const filtered = corrections.filter((c) =>
+    c.question.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (sortBy === "date") {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    }
+    return a.agent.localeCompare(b.agent)
+  })
+
+  const handleEdit = (id: number, agent: string) => {
+    setEditId(id)
+    setEditAgent(agent)
+  }
+
+  const handleSave = async (id: number) => {
+    await fetch("/api/corrections/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, agent: editAgent })
+    })
+    const updated = corrections.map(c => c.id === id ? { ...c, agent: editAgent } : c)
+    setCorrections(updated)
+    setEditId(null)
+    setEditAgent("")
+  }
+
+  const exportCSV = () => {
+    const csv = ["id,question,agent,date"].concat(
+      corrections.map(c => `${c.id},"${c.question}",${c.agent},${c.date}`)
+    ).join("\n")
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'corrections.csv'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-blue-700 flex items-center gap-2">
+          <Sparkles size={22} /> Corrections enregistrées
+        </h1>
+        <div className="flex gap-2">
+          <button
+            onClick={exportCSV}
+            className="text-sm border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-600 hover:text-white flex items-center gap-1"
+          >
+            <Download size={16} /> Export CSV
+          </button>
+          <Link
+            href="/"
+            className="text-sm border border-blue-600 text-blue-600 px-4 py-2 rounded hover:bg-blue-600 hover:text-white"
+          >
+            Retour
+          </Link>
+        </div>
+      </header>
+
+      <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between">
+        <input
+          type="text"
+          placeholder="Recherche dans les questions..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border border-zinc-300 px-4 py-2 rounded-md shadow-sm w-full md:w-1/2"
+        />
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as any)}
+          className="border border-zinc-300 px-3 py-2 rounded-md shadow-sm"
+        >
+          <option value="date">Trier par date</option>
+          <option value="agent">Trier par agent</option>
+        </select>
+      </div>
+
+      <table className="w-full text-sm bg-white border border-zinc-200 rounded-md overflow-hidden">
+        <thead className="bg-zinc-100">
+          <tr>
+            <th className="text-left px-4 py-2 border-b">Question</th>
+            <th className="text-left px-4 py-2 border-b">Agent</th>
+            <th className="text-left px-4 py-2 border-b">Date</th>
+            <th className="text-left px-4 py-2 border-b"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {sorted.map((entry) => (
+            <tr key={entry.id} className="hover:bg-zinc-50">
+              <td className="px-4 py-2 border-b">{entry.question}</td>
+              <td className="px-4 py-2 border-b text-blue-700 font-medium flex items-center gap-1.5">
+                {agentIcons[entry.agent] || <HelpCircle size={16} />}
+                {editId === entry.id ? (
+                  <select
+                    value={editAgent}
+                    onChange={(e) => setEditAgent(e.target.value)}
+                    className="ml-2 px-1 py-0.5 border border-zinc-300 rounded"
+                  >
+                    {Object.keys(agentIcons).map((key) => (
+                      <option key={key} value={key}>{key}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <span>{entry.agent}</span>
+                )}
+              </td>
+              <td className="px-4 py-2 border-b text-xs text-zinc-500">
+                {new Date(entry.date).toLocaleString()}
+              </td>
+              <td className="px-4 py-2 border-b">
+                {editId === entry.id ? (
+                  <button
+                    onClick={() => handleSave(entry.id)}
+                    className="text-green-600 text-sm hover:underline flex items-center gap-1"
+                  >
+                    <Check size={14} /> Valider
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleEdit(entry.id, entry.agent)}
+                    className="text-blue-600 text-sm hover:underline flex items-center gap-1"
+                  >
+                    <Pencil size={14} /> Modifier
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+================================================================================
+
+===== D:\agent-router-lab\app\dashboard\page.tsx =====
+
+import Dashboard from "../../components/Dashboard"
+
+
+export default function DashboardPage() {
+  return <Dashboard />
+}
+
+
+================================================================================
+
+===== D:\agent-router-lab\components\Dashboard.tsx =====
+
+'use client'
+
+import { useEffect, useState } from "react"
+import { Bar, Line } from "react-chartjs-2"
+import Link from "next/link"
+import {
+  Chart as ChartJS,
+  BarElement,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js"
+import { 
+  ArrowLeft, 
+  BarChart3,
+  MessageSquare,
+  Code,
+  Database,
+  LineChart,
+  FileText,
+  HelpCircle,
+  Image,
+  Lightbulb,
+  Scale,
+  Mail,
+  CheckSquare,
+  Calendar,
+  Trello,
+  Terminal,
+  Bug,
+  FileDown,
+  Globe,
+  TrendingUp
+} from 'lucide-react'
+
+ChartJS.register(BarElement, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend)
+
+interface Entry {
+  question: string
+  agent: string
+  method: "mots-clés" | "LLM"
+  date: string
+  topic?: string
+}
+
+export default function Dashboard() {
+  const [entries, setEntries] = useState<Entry[]>([])
+
+  useEffect(() => {
+    const stored = localStorage.getItem("agent_history")
+    if (stored) {
+      setEntries(JSON.parse(stored))
+    }
+  }, [])
+
+  const getAgentIcon = (agentId: string) => {
+    const size = 16
+    
+    switch(agentId) {
+      case "feedbackBot": return <MessageSquare size={size} />;
+      case "devHelper": return <Code size={size} />;
+      case "dataScout": return <Database size={size} />;
+      case "graphMaster": return <LineChart size={size} />;
+      case "docReader": return <FileText size={size} />;
+      case "sqlSensei": return <Database size={size} />; // Réutilisation de Database pour SQL
+      case "trendWatch": return <TrendingUp size={size} />;
+      case "explainBot": return <HelpCircle size={size} />;
+      case "imageAnalyst": return <Image size={size} />;
+      case "ideaBooster": return <Lightbulb size={size} />;
+      case "legalAdvisor": return <Scale size={size} />;
+      case "emailAssistant": return <Mail size={size} />;
+      case "codeReviewer": return <CheckSquare size={size} />;
+      case "schedulerBot": return <Calendar size={size} />;
+      case "notionHelper": return <Trello size={size} />;
+      case "commandGenie": return <Terminal size={size} />;
+      case "bugHunter": return <Bug size={size} />;
+      case "markdownMaster": return <FileDown size={size} />;
+      case "translationBot": return <Globe size={size} />;
+      default: return <HelpCircle size={size} />;
+    }
+  }
+
+  const getDisplayName = (agentId: string): string => {
+    const agentMap: Record<string, string> = {
+      "feedbackBot": "Feedback Bot",
+      "devHelper": "Dev Helper",
+      "dataScout": "Data Scout",
+      "graphMaster": "GraphMaster",
+      "docReader": "Doc Reader",
+      "sqlSensei": "SQL Sensei",
+      "trendWatch": "Trend Watcher",
+      "explainBot": "ExplainBot",
+      "imageAnalyst": "Image Analyst",
+      "ideaBooster": "Idea Booster",
+      "legalAdvisor": "Legal Advisor",
+      "emailAssistant": "Email Assistant",
+      "codeReviewer": "Code Reviewer",
+      "schedulerBot": "Scheduler Bot",
+      "notionHelper": "Notion Helper",
+      "commandGenie": "Command Genie",
+      "bugHunter": "Bug Hunter",
+      "markdownMaster": "Markdown Master",
+      "translationBot": "Translation Bot"
+    }
+
+    return agentMap[agentId] || agentId
+  }
+
+  const detectTopic = (text: string): string => {
+    const lower = text.toLowerCase()
+    if (lower.includes("graph") || lower.includes("chart") || lower.includes("visualisation")) return "Visualisation"
+    if (lower.includes("document") || lower.includes("pdf") || lower.includes("résumé")) return "Documents"
+    if (lower.includes("sql") || lower.includes("requête") || lower.includes("base")) return "Base de données"
+    if (lower.includes("tendance") || lower.includes("analyse") || lower.includes("pattern")) return "Analyse de tendances"
+    if (lower.includes("pourquoi") || lower.includes("comment") || lower.includes("définition")) return "Explications"
+    if (lower.includes("image") || lower.includes("screenshot") || lower.includes("diagramme")) return "Images"
+    if (lower.includes("idée") || lower.includes("slogan") || lower.includes("pitch")) return "Idées créatives"
+    if (lower.includes("rgpd") || lower.includes("loi") || lower.includes("contrat") || lower.includes("cgu")) return "Juridique"
+    if (lower.includes("email") || lower.includes("réponse") || lower.includes("relance")) return "Emails"
+    if (lower.includes("review") || lower.includes("lint") || lower.includes("améliore") || lower.includes("code qualité")) return "Code review"
+    if (lower.includes("date") || lower.includes("échéance") || lower.includes("planning")) return "Planification"
+    if (lower.includes("plan") || lower.includes("table") || lower.includes("notion") || lower.includes("roadmap")) return "Organisation"
+    if (lower.includes("commande") || lower.includes("shell") || lower.includes("terminal") || lower.includes("docker")) return "Commandes"
+    if (lower.includes("bug") || lower.includes("erreur") || lower.includes("crash")) return "Bugs"
+    if (lower.includes("markdown") || lower.includes("readme") || lower.includes("doc")) return "Documentation"
+    if (lower.includes("traduit") || lower.includes("anglais") || lower.includes("traduction")) return "Traduction"
+    if (lower.includes("react") || lower.includes("dev") || lower.includes("code")) return "Développement"
+    if (lower.includes("csv") || lower.includes("données") || lower.includes("tableau")) return "Données"
+    if (lower.includes("client") || lower.includes("feedback") || lower.includes("expérience")) return "Relation client"
+    return "Autre"
+  }
+
+  // Obtenez des noms d'agent formatés pour l'affichage dans les graphiques
+  const formattedAgentNames = entries.map(e => e.agent).filter((agent, index, self) => 
+    self.indexOf(agent) === index
+  ).map(getDisplayName);
+
+  const agents = Array.from(new Set(entries.map((e) => e.agent)))
+  const methodCountByAgent = {
+    motsCles: agents.map((agent) => entries.filter((e) => e.agent === agent && e.method === "mots-clés").length),
+    llm: agents.map((agent) => entries.filter((e) => e.agent === agent && e.method === "LLM").length),
+  }
+
+  const topicCount: Record<string, number> = {}
+  entries.forEach((e) => {
+    const topic = detectTopic(e.question)
+    topicCount[topic] = (topicCount[topic] || 0) + 1
+  })
+
+  const recentEntries = [...entries]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 10)
+
+  return (
+    <div className="p-6 space-y-8 max-w-6xl mx-auto">
+      {/* Navbar */}
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-blue-700 flex items-center gap-2">
+          <BarChart3 size={24} /> Tableau de bord des aiguillages
+        </h1>
+        <Link
+          href="/"
+          className="text-blue-600 text-sm border border-blue-600 px-4 py-2 rounded hover:bg-blue-600 hover:text-white transition flex items-center gap-1.5"
+        >
+          <ArrowLeft size={16} /> Retour au simulateur
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-4 rounded shadow">
+          <h2 className="text-lg font-semibold mb-2">Nombre d'aiguillages par agent</h2>
+          <Bar
+            data={{
+              labels: agents.map(getDisplayName),
+              datasets: [
+                {
+                  label: "Par mots-clés",
+                  data: methodCountByAgent.motsCles,
+                  backgroundColor: "#34d399",
+                },
+                {
+                  label: "Par LLM",
+                  data: methodCountByAgent.llm,
+                  backgroundColor: "#60a5fa",
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              plugins: { legend: { position: "bottom" } },
+              scales: {
+                x: {
+                  ticks: {
+                    autoSkip: false,
+                    maxRotation: 45,
+                    minRotation: 45
+                  }
+                }
+              }
+            }}
+          />
+        </div>
+
+        <div className="bg-white p-4 rounded shadow">
+          <h2 className="text-lg font-semibold mb-2">Répartition par sujet</h2>
+          <Bar
+            data={{
+              labels: Object.keys(topicCount),
+              datasets: [
+                {
+                  label: "Requêtes",
+                  data: Object.values(topicCount),
+                  backgroundColor: "#f59e0b",
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: {
+                  ticks: {
+                    autoSkip: false,
+                    maxRotation: 45,
+                    minRotation: 45
+                  }
+                }
+              }
+            }}
+          />
+        </div>
+
+        <div className="bg-white p-4 rounded shadow md:col-span-2">
+          <h2 className="text-lg font-semibold mb-2">Chronologie des 10 dernières requêtes</h2>
+          <Line
+            data={{
+              labels: recentEntries.map((e) => new Date(e.date).toLocaleTimeString()),
+              datasets: [
+                {
+                  label: "Aiguillages",
+                  data: recentEntries.map((_, i) => i + 1),
+                  borderColor: "#a78bfa",
+                  backgroundColor: "#ddd6fe",
+                  tension: 0.4,
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              plugins: { 
+                legend: { position: "bottom" },
+                tooltip: {
+                  callbacks: {
+                    title: function(context) {
+                      const index = context[0].dataIndex;
+                      return `Requête: ${recentEntries[index].question}`;
+                    },
+                    label: function(context) {
+                      const index = context.dataIndex;
+                      return `Agent: ${getDisplayName(recentEntries[index].agent)}`;
+                    },
+                    afterLabel: function(context) {
+                      const index = context.dataIndex;
+                      return `Méthode: ${recentEntries[index].method}`;
+                    }
+                  }
+                }
+              }
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+================================================================================
+
+===== D:\agent-router-lab\scripts\export-corrections.ts =====
+
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import { join } from 'path'
+import fs from 'fs'
+
+async function exportCorrections() {
+  const db = await open({
+    filename: join(__dirname, '../data/corrections.db'),
+    driver: sqlite3.Database
+  })
+
+  const rows = await db.all(`SELECT * FROM corrections ORDER BY created_at DESC`)
+  const json = JSON.stringify(rows, null, 2)
+
+  const outputPath = join(__dirname, '../export/corrections.json')
+  fs.mkdirSync(join(__dirname, '../export'), { recursive: true })
+  fs.writeFileSync(outputPath, json)
+
+  console.log(`✅ Corrections exportées dans : ${outputPath}`)
+}
+
+exportCorrections()
+
+
+================================================================================
+
+===== D:\agent-router-lab\scripts\init-db.ts =====
+
+import sqlite3 from 'sqlite3'
+import { open } from 'sqlite'
+import { join } from 'path'
+import fs from 'fs'
+
+async function setup() {
+  const dbPath = join(__dirname, '../data/corrections.db')
+
+  // 🔒 Crée le dossier data/ si absent
+  const dataDir = join(__dirname, '../data')
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true })
+  }
+
+  const db = await open({
+    filename: dbPath,
+    driver: sqlite3.Database
+  })
+
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS corrections (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      question TEXT NOT NULL,
+      agent TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
+
+  console.log("✅ Base corrections.db initialisée à :", dbPath)
+}
+
+setup()
+
+
+================================================================================
+
+
+### 17 fichiers enregistrés avec succès. ###
